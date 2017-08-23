@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import genericImg from '../../../../img/no-img.png';
 
-const SingleProduct = ({ product, ...rest }) => {
+const SingleProduct = ({ product }) => {
   return (
     <div className='panel panel-default'>
       <div className='panel-heading text-center'>
@@ -21,6 +21,10 @@ const SingleProduct = ({ product, ...rest }) => {
       </div>
     </div>
   );
+}
+
+SingleProduct.propTypes = {
+  product: PropTypes.object.isRequired
 }
 
 export default SingleProduct;
