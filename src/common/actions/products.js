@@ -21,20 +21,17 @@ export function getProducts() {
     dispatch(start(PRODUCTS_GET_START));
 
     firebase.database().ref('/products')
-      .on('value',
+      .once('value',
         (snapshot) => {
 
-          let data = [];
+          const data = [];
 
-          if (snapshot.val()) {
-            
-            const obj = snapshot.val();
-            
-            data = Object.keys(obj).map(key => {
-              return Object.assign({}, obj[key], { key });
-            });
-
-          }
+          snapshot.forEach(item => {
+            data.push({
+              key: item.key,
+              ...item.val()
+            })
+          });
           
           dispatch(handleResponse(PRODUCTS_GET_SUCCESS, data));
 
