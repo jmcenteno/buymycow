@@ -1,0 +1,34 @@
+@import './themes/lumen/variables';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import './themes/lumen/bootswatch';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  padding-top: $navbar-height;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+.footer {
+  padding: 16px;
+}
+
+.page {
+  padding: 16px 0 50px;
+  margin-bottom: -50px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
