@@ -31,7 +31,7 @@ export function getProducts() {
             const obj = snapshot.val();
             
             data = Object.keys(obj).map(key => {
-              return { key, ...obj };
+              return Object.assign({}, obj[key], { key });
             });
 
           }

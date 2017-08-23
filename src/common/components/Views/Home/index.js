@@ -1,22 +1,9 @@
 import { connect }            from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import * as actions from '../../../actions/products';
 import Home from './Home';
 
 const mapStateToProps = (state) => {
-  return {
-    loading: state.getIn(['products', 'loading']),
-    error: state.getIn(['products', 'error']),
-    products: state.getIn(['products', 'data'])
-  };
+  return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    actions,
-    dispatch
-  );
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps)(Home);
