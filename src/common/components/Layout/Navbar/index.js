@@ -39,7 +39,7 @@ export default class Navbar extends Component {
           <div className={ `collapse navbar-collapse ${ !collapsed ? 'show' : '' }` } id='navbarSupportedContent'>
             <ul className='nav navbar-nav'>
               <li className=''>
-                <Link className='nav-link' to='products'>Products</Link>
+                <Link className='nav-link' to='/products'>Products</Link>
               </li>
             </ul>
           </div>
