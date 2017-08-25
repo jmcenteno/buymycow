@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import { Page, PageHeader, Spinner } from '../../Global';
 import { getRemainingTime } from '../../../services/utils';
 import genericImg from '../../../../img/no-img.png';
 import BidHistory from './BidHistory';
+import CurrentPrice from './CurrentPrice';
+import RemainingTime from './RemainingTime';
+import HighestBidder from './HighestBidder';
 import BidForm from './BidForm';
 
 const styles = {
@@ -70,8 +72,6 @@ export default class Products extends Component {
 
   componentWillReceiveProps(newProps) {
 
-    console.log(this.props)
-
     if (newProps.product.get('error')) {
       this.props.history.replace('/404');
     }
@@ -115,9 +115,10 @@ export default class Products extends Component {
                     <div className='col-sm-6'>
 
                       <div className='h1 visible-xs' style={ styles.currentPrice }>
-                        <small style={ { fontSize: '45%' } }>{ `${product.getIn(['data', 'sold']) ? 'Sold' : 'Current'} Price` }</small>
-                        <br />
-                        <strong>{ `$${currentPrice}` }</strong>
+                        <CurrentPrice
+                          product={ product.get('data') }
+                          bids={ bidHistory.get('data') }
+                        />
                       </div>
                       
                       <aside style={ { overflow: 'hidden' } }>
@@ -143,16 +144,12 @@ export default class Products extends Component {
 
                       <section>
                         <div className='h1 hidden-xs' style={ styles.currentPrice }>
-                          <small style={ { fontSize: '45%' } }>{ `${product.getIn(['data', 'sold']) ? 'Sold' : 'Current'} Price` }</small>
-                          <br />
-                          <strong>{ `$${currentPrice}` }</strong>
+                          <CurrentPrice
+                            product={ product.get('data') }
+                            bids={ bidHistory.get('data') }
+                          />
                         </div>
-                        <p>
-                          { `${remainingTime.difference} ${remainingTime.interval} left` }
-                        </p>
-                        <p>
-                          End Date: { moment(product.getIn(['data', 'endDate'])).format('MM/DD/YYYY') }
-                        </p>
+                        <RemainingTime product={ product.get('data') } />
                       </section>
 
                       <br />
@@ -178,17 +175,7 @@ export default class Products extends Component {
                   <section style={ styles.bidHistory.section }>
                     {
                       bidHistory.get('data').size ?
-                        <div className='well wel-sm'>
-                          <div className='h4' style={ { marginTop: 0 } }>
-                            Highest Bidder
-                          </div>
-                          <div>
-                            User: <strong>{ bidHistory.getIn(['data', 0]).user }</strong>
-                          </div>
-                          <div>
-                            Amount: <strong>{ `$${bidHistory.getIn(['data', 0]).amount}` }</strong>
-                          </div>
-                        </div> :
+                        <HighestBidder bid={ bidHistory.getIn(['data', 0]) } /> :
                         null
                     }
                     <div className='panel panel-default'>
