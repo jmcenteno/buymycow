@@ -47,9 +47,6 @@ const reactApp = (req, res) => {
 
   }
 
-  //HTML = renderFullPage(ErrorPage, preloadedState);
-  //status = 500;
-
   res.status(status).send(HTML);
 
 }
