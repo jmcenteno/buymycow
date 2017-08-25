@@ -123,7 +123,7 @@ export default class BidForm extends Component {
           />
         </div>
         
-        <div className={`form-group ${``}`}>
+        <div className='form-group'>
           <label className='control-label'>Bid Amount</label>
           <div className='row'>
             <div className='col-sm-7'>
