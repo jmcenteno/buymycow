@@ -178,13 +178,19 @@ export default class Products extends Component {
                   <section style={ styles.bidHistory.section }>
                     {
                       bidHistory.get('data').size ?
-                        <div className='h4'>
-                          Highest Bidder: &nbsp;
-                          <strong>{ bidHistory.getIn(['data', 0]).user }</strong>
+                        <div className='well wel-sm'>
+                          <div className='h4' style={ { marginTop: 0 } }>
+                            Highest Bidder
+                          </div>
+                          <div>
+                            User: <strong>{ bidHistory.getIn(['data', 0]).user }</strong>
+                          </div>
+                          <div>
+                            Amount: <strong>{ `$${bidHistory.getIn(['data', 0]).amount}` }</strong>
+                          </div>
                         </div> :
                         null
                     }
-                    <br />
                     <div className='panel panel-default'>
                       <div className='panel-heading'>
                         <h4 className='panel-title'>Bid History</h4>
