@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
+import Validator from 'validator';
 
 import { FormError } from '../../Global';
 
@@ -22,11 +23,31 @@ Object.assign(Validation.rules, {
   },
   min: {
     rule: (value, components) => {
-      return value >= components.amount.props.min
+      return (value >= components.amount.props.min);
     },
     hint: (value) => {
       return (
         <FormError message='Invalid bid amount.' />
+      );
+    }
+  },
+  numeric: {
+    rule: (value) => {
+      return Validator.isNumeric(value.toString());
+    },
+    hint: (value) => {
+      return (
+        <FormError message='Invalid bid amount.' />
+      );
+    }
+  },
+  alphanumeric: {
+    rule: (value) => {
+      return Validator.isAlphanumeric(value);
+    },
+    hint: (value) => {
+      return (
+        <FormError message='Invalid username.' />
       );
     }
   }
@@ -98,14 +119,14 @@ export default class BidForm extends Component {
             placeholder='Enter your username'
             onChange={ (e) => onSetUser(e.target.value) }
             errorContainerClassName='has-error'
-            validations={ ['required'] } 
+            validations={ ['required', 'alphanumeric'] } 
           />
         </div>
         
         <div className={`form-group ${``}`}>
-          <label className='control-label'>Amount</label>
+          <label className='control-label'>Bid Amount</label>
           <div className='row'>
-            <div className='col-sm-6'>
+            <div className='col-sm-7'>
               <Validation.components.Input 
                 type='number'
                 name='amount'
@@ -117,7 +138,7 @@ export default class BidForm extends Component {
                 placeholder='Enter Amount'
                 aria-describedby='amountControl'
                 errorContainerClassName='has-error'
-                validations={ ['required', 'min'] }
+                validations={ ['numeric', 'required', 'min'] }
               />
             </div>
           </div>
