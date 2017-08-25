@@ -21,7 +21,7 @@ export function getProducts() {
     dispatch(start(PRODUCTS_GET_START));
 
     firebase.database().ref('/products')
-      .once('value',
+      .on('value',
         (snapshot) => {
 
           const data = [];

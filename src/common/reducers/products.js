@@ -22,14 +22,14 @@ const actionsMap = {
   [PRODUCTS_GET_ERROR]: (state, action) => {
     return state.merge({
       loading: false,
-      error: action.data
+      error: Map(action.data)
     });
   },
 
   [PRODUCTS_GET_SUCCESS]: (state, action) => {
     return state.merge({
       loading: false,
-      data: action.data,
+      data: List(action.data),
       error: null
     });
   }

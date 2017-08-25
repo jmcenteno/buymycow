@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-import { Page, PageHeader } from '../../Global';
+import { Page, PageHeader, Spinner } from '../../Global';
 import ProductGrid from './ProductGrid';
 
-const styles = {}
+const styles = {
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%'
+  }
+}
 
 export default class Products extends Component {
 
@@ -13,13 +19,30 @@ export default class Products extends Component {
   }
 
   render() {
-    console.log(this.props.products.toJS())
+
+    const { loading, products } = this.props;
+
+    if (loading) {
+      return (
+        <Page>
+          <div style={ styles.spinner }>
+            <Spinner />
+          </div>
+        </Page>
+      );
+    }
+
     return (
       <Page>
         <PageHeader title='Products' />
-        <ProductGrid products={this.props.products.toJS()} />
+        {
+          products.size ?
+            <ProductGrid products={ products } /> :
+            <p>There are no products</p>
+        }
       </Page>
     );
+    
   }
 
 }

@@ -6,19 +6,19 @@ import SingleProduct from './SingleProduct';
 
 const ProductGrid = ({ products, ...rest }) => {
   
-  const rows = paginate(products || []);
+  const rows = paginate(products.toJS() || []);
   
   return (
     <div>
       {
         rows.map((row, i) => {
           return (
-            <div className='row' key={i}>
+            <div className='row' key={ i }>
               {
                 row.map((product, i) => {
                   return (
-                    <div className='col-sm-4' key={i}>
-                      <SingleProduct product={product} />
+                    <div className='col-sm-4' key={ i }>
+                      <SingleProduct product={ product } />
                     </div>
                   );
                 })
@@ -33,7 +33,7 @@ const ProductGrid = ({ products, ...rest }) => {
 }
 
 ProductGrid.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object).isRequired
+  products: PropTypes.object.isRequired
 }
 
 export default ProductGrid;
