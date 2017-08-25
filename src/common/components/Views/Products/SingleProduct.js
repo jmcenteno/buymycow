@@ -7,6 +7,11 @@ import genericImg from '../../../../img/no-img.png';
 
 const styles = {
   panel: {
+    heading: {
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      overflow: 'hidden'
+    },
     body: {
       overflow: 'hidden'
     }
@@ -42,7 +47,7 @@ const SingleProduct = ({ product }) => {
 
   return (
     <div className='panel panel-default'>
-      <div className='panel-heading text-center'>
+      <div className='panel-heading text-center' style={ styles.panel.heading }>
         <h3 className='panel-title'>{product.name}</h3>
       </div>
       <div className='panel-body text-center' style={ styles.panel.body }>

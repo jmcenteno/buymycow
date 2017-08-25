@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const styles = {
   page: {
-    padding: '16px 0 50px',
+    padding: '16px 0 70px',
     marginBottom: -50,
     height: '100%',
     display: 'flex',
