@@ -1,27 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import { getRemainingTime } from '../../../services/utils';
 
-const RemainingTime = ({ product }) => {
+export default class RemainingTime extends Component {
 
-  const time = getRemainingTime(product.get('endDate'));
+  static propTypes = {
+    product: PropTypes.object.isRequired
+  }
 
-  return (
-    <div>
-      <p>
-        { `${time.difference} ${time.interval} left` }
-      </p>
-      <p>
-        End Date: { moment(new Date(product.get('endDate'))).format('M/D/YYYY') }
-      </p>
-    </div>
-  );
+  constructor(props) {
+    super(props);
+
+    const { product } = props;
+    
+    this.remainingTime = getRemainingTime(product.get('endDate'));
+
+  }
+
+  componentWillMount() {
+
+    this.timer = setInterval(() => {
+      
+      const { product } = this.props;
+
+      this.remainingTime = getRemainingTime(product.get('endDate'));
+
+    }, 1000);
+
+  }
+
+  componentWillUnmount() {
+
+    clearInterval(this.timer);
+
+  }
+  
+  render() {
+    
+    const { product } = this.props;
+    const { difference, interval } = this.remainingTime;
+    const endDate = moment(new Date(product.get('endDate'))).format('M/D/YYYY');
+
+    return (
+      <div>
+        <p className='lead'>
+          {
+            difference ?
+              `${difference} ${interval} left` :
+              'Time\'s Up!'
+          }
+        </p>
+        <p>
+          End Date: { endDate }
+        </p>
+      </div>
+    );
+
+  }
+
 }
-
-RemainingTime.propTypes = {
-  product: PropTypes.object.isRequired
-}
-
-export default RemainingTime;

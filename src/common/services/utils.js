@@ -23,18 +23,18 @@ export function paginate(arr) {
 export function getRemainingTime(endDate) {
   
   let remainingTime = {
-    interval: 'minutes',
+    interval: 'minute(s)',
     difference: 0
   }
 
-  const intervals = ['days', 'hours', 'minutes'];
+  const intervals = ['day', 'hour', 'minute'];
   
   for (let i = 0; i < intervals.length; i++) {
     
-    const difference = moment(new Date(endDate)).diff(moment(), intervals[i]);
+    const difference = moment(new Date(endDate)).diff(moment(), `${intervals[i]}s`);
     
-    if (difference) {
-      remainingTime = { interval: intervals[i], difference };
+    if (difference > 0) {
+      remainingTime = { interval: `${intervals[i]}(s)`, difference };
       break;
     }
 
