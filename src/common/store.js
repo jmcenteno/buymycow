@@ -1,17 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
-import { fromJS } from 'immutable';
+import { createLogger } from 'redux-logger';
+import { routerMiddleware } from 'react-router-redux';
 
 import rootReducer from './reducers';
 
 let store;
 const isProduction = process.env.NODE_ENV === 'production';
-const middleware = [thunk];
-
-if (!isProduction) {
-  middleware.push(logger);
-}
 
 function isStoreInitialized() {
 
@@ -23,15 +18,37 @@ function isStoreInitialized() {
 
 }
 
-export function configureStore() {
-
-  const preloadedState = window.__PRELOADED_STATE__;
-  delete window.__PRELOADED_STATE__;
-
-  const enhancer = compose(applyMiddleware(...middleware));
+export function configureStore(initialState, history = null) {
   
-  // Create Redux store with initial state
-  store = createStore(rootReducer, fromJS(preloadedState), enhancer);
+  const middleware = [thunk];
+  
+  if (!isProduction) {
+    middleware.push(createLogger());
+  }
+
+  if (history) {
+    middleware.push(routerMiddleware(history));
+  }
+
+  // Add universal enhancers here
+  let enhancers = [];
+
+  const composeEnhancers = (
+    typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ) || compose;
+
+  const enhancer = composeEnhancers(...[applyMiddleware(...middleware), ...enhancers]);
+
+  // create store with enhancers, middleware, reducers, and initialState
+  store = createStore(rootReducer, initialState, enhancer);
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers').default;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
   return store;
 

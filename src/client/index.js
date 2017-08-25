@@ -1,32 +1,24 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { ConnectedRouter } from 'react-router-redux';
 
 import { configureStore } from '../common/store';
 import App from '../common/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
-const store = configureStore();
 const history = createBrowserHistory();
-const syncedHistory = syncHistoryWithStore(
-  history,
-  store,
-  {
-    selectLocationState: (state) => {
-      return state.get('routing').toJS();
-    }
-  }
-);
+const initialState = window.__INITIAL_STATE__;
+const store = configureStore(initialState, history);
 
 ReactDOM.render(
   <Provider store={ store }>
-    <BrowserRouter history={syncedHistory}>
+    <ConnectedRouter history={ history }>
       <App />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
