@@ -1,27 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { paginate } from '../../../services/utils';
 import SingleProduct from './SingleProduct';
-
-function paginate(arr) {
-  
-  const pages = [];
-  let page = [];
-
-  arr.forEach((item, i) => {
-
-    page.push(item);
-
-    if ((i + 1) % 3 === 0 || (i + 1) >= arr.length) {
-      pages.push(page);
-      page = [];
-    }
-
-  });
-
-  return pages;
-
-}
 
 const ProductGrid = ({ products, ...rest }) => {
   
