@@ -72,7 +72,7 @@ export default class Products extends Component {
 
     console.log(this.props)
 
-    if (newProps.product.get('data')) {
+    if (newProps.product.get('error')) {
       this.props.history.replace('/404');
     }
 

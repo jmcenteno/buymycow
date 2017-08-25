@@ -34,9 +34,17 @@ export function getProductDetails(key) {
       .on('value',
         (snapshot) => {
 
-          const data = { key, ...snapshot.val() };
+          if (!snapshot.val()) {
 
-          dispatch(handleResponse(PRODUCT_DETAILS_GET_SUCCESS, data));
+            dispatch(handleResponse(PRODUCT_DETAILS_GET_ERROR, { message: 'not found' }));
+
+          } else {
+
+            const data = { key, ...snapshot.val() };
+            
+            dispatch(handleResponse(PRODUCT_DETAILS_GET_SUCCESS, data));
+
+          }
 
         },
         (error) => dispatch(handleResponse(PRODUCT_DETAILS_GET_ERROR, error))
