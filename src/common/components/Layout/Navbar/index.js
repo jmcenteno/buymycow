@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { APP_NAME } from '../../../config/app';
+
+const styles = {
+  activeNavLink: {
+    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+  }
+}
 
 export default class Navbar extends Component {
 
@@ -40,8 +46,8 @@ export default class Navbar extends Component {
           </div>
           <div className={ `collapse navbar-collapse ${ !collapsed ? 'show' : '' }` } id='navbarSupportedContent'>
             <ul className='nav navbar-nav'>
-              <li className=''>
-                <Link className='nav-link' to='/products'>Products</Link>
+              <li>
+                <NavLink to='/products' activeStyle={ styles.activeNavLink }>Products</NavLink>
               </li>
             </ul>
           </div>
