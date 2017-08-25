@@ -20,6 +20,7 @@
     "history": "^4.6.3",
     "moment": "^2.18.1",
     "npm": "^5.3.0",
+    "numeral": "^2.0.6",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-context-component": "^0.0.3",

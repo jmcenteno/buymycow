@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Numeral from 'numeral';
 
 const CurrentPrice = ({ product, bids }) => {
 
@@ -15,7 +16,7 @@ const CurrentPrice = ({ product, bids }) => {
         { `${product.getIn(['data', 'sold']) ? 'Sold' : 'Current'} Price` }
       </small>
       <br />
-      <strong>{ `$${currentPrice}` }</strong>
+      <strong>{ Numeral(currentPrice).format('$0,0') }</strong>
     </div>
   );
 

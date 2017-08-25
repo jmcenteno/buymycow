@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import Numeral from 'numeral';
 
 const BiddingHistory = ({ bids }) => {
 
@@ -23,7 +24,7 @@ const BiddingHistory = ({ bids }) => {
                   return (
                     <tr key={ `bid-${item.key}` }>
                       <td>{ item.user }</td>
-                      <td>{ `$${item.amount}` }</td>
+                      <td>{ Numeral(item.amount).format('$0,0') }</td>
                       <td className='text-right'>
                         { moment(item.date).format('M/D/YYYY') }
                         <br />
