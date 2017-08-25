@@ -31,7 +31,7 @@ export function getRemainingTime(endDate) {
   
   for (let i = 0; i < intervals.length; i++) {
     
-    const difference = moment(endDate).diff(moment(), intervals[i]);
+    const difference = moment(new Date(endDate)).diff(moment(), intervals[i]);
     
     if (difference) {
       remainingTime = { interval: intervals[i], difference };

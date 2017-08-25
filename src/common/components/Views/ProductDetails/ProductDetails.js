@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Page, PageHeader, Spinner } from '../../Global';
-import { getRemainingTime } from '../../../services/utils';
 import genericImg from '../../../../img/no-img.png';
 import BidHistory from './BidHistory';
 import CurrentPrice from './CurrentPrice';
@@ -93,14 +92,6 @@ export default class Products extends Component {
       );
 
     }
-
-    const currentPrice = (
-      bidHistory.get('data').size ?
-        bidHistory.getIn(['data', 0]).amount :
-        product.getIn(['data', 'initialPrice'])
-    );
-
-    const remainingTime = getRemainingTime(product.getIn(['data', 'endDate']));
     
     return (
       <Page>
@@ -159,7 +150,7 @@ export default class Products extends Component {
                           <section>
                             <BidForm 
                               product={ product.get('data') }
-                              amount={ currentPrice } 
+                              bids={ bidHistory.get('data') }
                               onSubmit={ this.props.createBid }
                             />
                           </section> :

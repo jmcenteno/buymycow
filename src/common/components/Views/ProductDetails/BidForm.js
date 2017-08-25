@@ -36,10 +36,7 @@ export default class BidForm extends Component {
 
   static propTypes = {
     product: PropTypes.object.isRequired,
-    amount: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string
-    ]).isRequired,
+    bids: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired
   }
 
@@ -77,9 +74,13 @@ export default class BidForm extends Component {
 
   render() {
 
-    const { amount } = this.props;
+    const { product, bids } = this.props;
 
-    //console.log(this.form.getErrors())
+    const currentPrice = (
+      bids.size ?
+        bids.get(0).amount :
+        product.get('initialPrice')
+    );
 
     return (
       <Validation.components.Form 
@@ -107,9 +108,9 @@ export default class BidForm extends Component {
                 type='number'
                 name='amount'
                 id='amountControl'
-                value={ Number.parseInt(amount, 10) + 1 }
+                value={ Number.parseInt(currentPrice, 10) + 1 }
                 step={ 1 }
-                min={ Number.parseInt(amount, 10) + 1 }
+                min={ Number.parseInt(currentPrice, 10) + 1 }
                 className='form-control'
                 placeholder='Enter Amount'
                 aria-describedby='amountControl'
