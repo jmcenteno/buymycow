@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
   return {
     product: state.getIn(['productDetails', 'product']),
     bidHistory: state.getIn(['productDetails', 'bids']),
+    createBidError: state.getIn(['productDetails', 'createBid']).get('error'),
     currentUser: state.getIn(['user', 'currentUser'])
   };
 };

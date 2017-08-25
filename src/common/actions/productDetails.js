@@ -98,9 +98,19 @@ export function createBid(bid, product) {
       if (remainingTime.difference && !product.sold) {
         
         ref.push(bid, (error) => {
-          if (!error) {
+          
+          if (error) {
+          
+            dispatch(handleResponse(BID_CREATE_ERROR, {
+              message: 'Your bid cannot be placed at this time. Please try again later.'
+            }));
+          
+          } else {
+          
             dispatch(handleResponse(BID_CREATE_SUCCESS, null));
+          
           }
+
         });
 
       } else {

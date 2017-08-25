@@ -6,7 +6,9 @@ import {
   PRODUCT_DETAILS_GET_SUCCESS,
   BID_HISTORY_GET_START,
   BID_HISTORY_GET_ERROR,
-  BID_HISTORY_GET_SUCCESS
+  BID_HISTORY_GET_SUCCESS,
+  BID_CREATE_ERROR,
+  BID_CREATE_SUCCESS
 } from '../actions/productDetails';
 
 const initialState = Map({
@@ -18,6 +20,9 @@ const initialState = Map({
   bids: Map({
     loading: false,
     data: List(),
+    error: null
+  }),
+  createBid: Map({
     error: null
   })
 });
@@ -80,6 +85,22 @@ const actionsMap = {
       })
     });
   },
+
+  [BID_CREATE_ERROR]: (state, action) => {
+    return state.merge({
+      createBid: Map({
+        error: Map(action.data)
+      })
+    });
+  },
+
+  [BID_CREATE_SUCCESS]: (state) => {
+    return state.merge({
+      createBid: Map({
+        error: null
+      })
+    });
+  }
 
 };
 

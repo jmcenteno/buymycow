@@ -57,7 +57,9 @@ export default class Products extends Component {
 
   static propTypes = {
     product: PropTypes.object.isRequired,
-    bidHistory: PropTypes.object.isRequired
+    bidHistory: PropTypes.object.isRequired,
+    currentUser: PropTypes.string.isRequired,
+    createBidError: PropTypes.object
   }
 
   componentDidMount() {
@@ -79,7 +81,7 @@ export default class Products extends Component {
 
   render() {
 
-    const { product, bidHistory } = this.props;
+    const { product, bidHistory, createBidError, currentUser } = this.props;
 
     if (product.get('loading') || bidHistory.get('loading')) {
       
@@ -151,7 +153,8 @@ export default class Products extends Component {
                             <BidForm 
                               product={ product.get('data') }
                               bids={ bidHistory.get('data') }
-                              user={ this.props.currentUser }
+                              user={ currentUser }
+                              error={ createBidError }
                               onSetUser={ this.props.setUser }
                               onSubmit={ this.props.createBid }
                             />
