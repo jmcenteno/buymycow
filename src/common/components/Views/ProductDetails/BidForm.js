@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 
+import { FormError } from '../../Global';
+
 Object.assign(Validation.rules, {
   // Key name maps the rule 
   required: {
@@ -13,7 +15,9 @@ Object.assign(Validation.rules, {
     // Function to return hint 
     // You may use current value to inject it in some way to the hint 
     hint: (value) => {
-      return <span className="help-block text-danger">This field is required.</span>
+      return (
+        <FormError message='This field is required.' />
+      );
     }
   },
   min: {
@@ -21,7 +25,9 @@ Object.assign(Validation.rules, {
       return value >= components.amount.props.min
     },
     hint: (value) => {
-      return null;
+      return (
+        <FormError message='Invalid bid amount.' />
+      );
     }
   }
 });
