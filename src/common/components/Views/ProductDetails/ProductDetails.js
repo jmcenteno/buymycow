@@ -151,6 +151,8 @@ export default class Products extends Component {
                             <BidForm 
                               product={ product.get('data') }
                               bids={ bidHistory.get('data') }
+                              user={ this.props.currentUser }
+                              onSetUser={ this.props.setUser }
                               onSubmit={ this.props.createBid }
                             />
                           </section> :

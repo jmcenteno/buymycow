@@ -37,6 +37,7 @@ export default class BidForm extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
     bids: PropTypes.object.isRequired,
+    onSetUser: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired
   }
 
@@ -74,7 +75,7 @@ export default class BidForm extends Component {
 
   render() {
 
-    const { product, bids } = this.props;
+    const { product, bids, user, onSetUser } = this.props;
 
     const currentPrice = (
       bids.size ?
@@ -91,12 +92,13 @@ export default class BidForm extends Component {
           <label className='control-label'>Username</label>
           <Validation.components.Input 
             type='text' 
-            value={''}
+            value={ user }
             name='username'
             className='form-control' 
             placeholder='Enter your username'
+            onChange={ (e) => onSetUser(e.target.value) }
             errorContainerClassName='has-error'
-						validations={ ['required'] } 
+            validations={ ['required'] } 
           />
         </div>
         
