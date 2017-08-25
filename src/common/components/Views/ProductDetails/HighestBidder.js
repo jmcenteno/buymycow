@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Numeral from 'numeral';
 
 const HighestBidder = ({ bid }) => {
   return (
@@ -11,7 +12,7 @@ const HighestBidder = ({ bid }) => {
         User: <strong>{ bid.user }</strong>
       </div>
       <div>
-        Amount: <strong>{ `$${bid.amount}` }</strong>
+        Amount: <strong>{ Numeral(bid.amount).format('$0,0') }</strong>
       </div>
     </div>
   );
