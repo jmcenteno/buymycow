@@ -25,7 +25,7 @@ const BiddingHistory = ({ bids }) => {
                       <td>{ item.user }</td>
                       <td>{ `$${item.amount}` }</td>
                       <td className='text-right'>
-                        { moment(item.date).format('M/DD/YYYY') }
+                        { moment(item.date).format('M/D/YYYY') }
                         <br />
                         { moment(item.date).format('h:MM:SS A') }
                       </td>

@@ -14,7 +14,7 @@ const RemainingTime = ({ product }) => {
         { `${time.difference} ${time.interval} left` }
       </p>
       <p>
-        End Date: { moment(new Date(product.get('endDate'))).format('MM/DD/YYYY') }
+        End Date: { moment(new Date(product.get('endDate'))).format('M/D/YYYY') }
       </p>
     </div>
   );

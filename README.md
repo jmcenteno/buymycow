@@ -1,19 +1,6 @@
-# Universal Create React App
+# BuyMyCow
 
-This project is a refactoring of the default app created by [create-react-app v1.0.7](https://github.com/facebookincubator/create-react-app/tree/v1.0.7), and then ejected.
-
-A universal app runs both on the server and the client, and shares as much code as possible between the server and client - typically around 90%.
-
-Development
-
-![](https://gifyu.com/images/universal-dev.gif)
-
-Production
-
-![](https://gifyu.com/images/universal-build.gif)
-
-For a step by step explanation read the article
-https://medium.com/leanjs/universal-create-react-app-step-by-step-b80ba68d125d
+This project was forked from [Universal Create React App](https://github.com/leanjscom/universal-create-react-app) by [LeanJS](https://github.com/leanjscom), and heavily modified to meet requirements.
 
 ## How to run this project
 
