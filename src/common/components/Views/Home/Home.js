@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { APP_NAME } from '../../../config/app';
 import { Page } from '../../Global';
 import cow from './cow.png';
 
@@ -30,7 +31,7 @@ export default class Home extends Component {
           <div className='text-center'>
             <img src={ cow } className='img-responsive' style={ styles.img } alt='cow' />
             <h1 className='lead' style={ styles.h1 }>
-              Welcome to BuyMyCow!
+              Welcome to { APP_NAME }!
               <br />
               <small>Where cows go moo.</small>
             </h1>

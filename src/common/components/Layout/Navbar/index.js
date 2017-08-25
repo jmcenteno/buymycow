@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { APP_NAME } from '../../../config/app';
+
 export default class Navbar extends Component {
 
   constructor() {
@@ -33,7 +35,7 @@ export default class Navbar extends Component {
               <span className="icon-bar"></span>
             </button>
             <Link className='navbar-brand' to='/'>
-              <strong>BuyMyCow</strong>
+              <strong>{ APP_NAME }</strong>
             </Link>
           </div>
           <div className={ `collapse navbar-collapse ${ !collapsed ? 'show' : '' }` } id='navbarSupportedContent'>
