@@ -5,12 +5,12 @@ const PageHeader = ({ title, subtitle, children }) => {
   return (
     <header className='page-header'>
       <h1 className='display-4'>
-        {title}
+        { title }
         {
           subtitle ?
             <span>
               <br />
-              <small>{subtitle}</small>
+              <small>{ subtitle }</small>
             </span> :
             null
         }

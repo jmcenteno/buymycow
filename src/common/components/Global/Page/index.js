@@ -16,9 +16,9 @@ const styles = {
 
 const Page = ({ children }) => {
   return (
-    <div className='page' style={styles.page}>
-      <div className='container' style={styles.container}>
-        {children}
+    <div className='page' style={ styles.page }>
+      <div className='container' style={ styles.container }>
+        { children }
       </div>
     </div>
   );

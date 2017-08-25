@@ -11,7 +11,7 @@ const styles = {
 const Spinner = () => {
   return (
     <div className='text-center'>
-      <img src={ img } alt='Loading' style={styles.img} />
+      <img src={ img } alt='Loading' style={ styles.img } />
     </div>
   );
 }
