@@ -7,7 +7,7 @@ import ProductDetails from './ProductDetails';
 const mapStateToProps = (state) => {
   return {
     product: state.getIn(['productDetails', 'product']),
-    biddingHistory: state.getIn(['productDetails', 'biddingHistory'])
+    bidHistory: state.getIn(['productDetails', 'bids'])
   };
 };
 
