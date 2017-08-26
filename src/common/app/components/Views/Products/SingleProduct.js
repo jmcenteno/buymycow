@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { getRemainingTime } from '../../../services/utils';
-import genericImg from '../../../../img/no-img.png';
+import genericImg from '../../../../assets/img/no-img.png';
 
 const styles = {
   panel: {

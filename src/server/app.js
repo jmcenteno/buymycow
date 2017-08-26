@@ -5,8 +5,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import renderFullPage from './render'
-import App from '../common/App'
-import reducers from '../common/reducers'
+import App from '../common/app/App'
+import reducers from '../common/app/reducers'
 
 const ErrorPage = () => {
   return (

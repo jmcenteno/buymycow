@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Page, PageHeader, Spinner } from '../../Global';
-import genericImg from '../../../../img/no-img.png';
+import genericImg from '../../../../assets/img/no-img.png';
 import BidHistory from './BidHistory';
 import CurrentPrice from './CurrentPrice';
 import RemainingTime from './RemainingTime';
