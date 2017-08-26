@@ -7,10 +7,12 @@ import genericImg from '../../../../assets/img/no-img.png';
 
 const styles = {
   panel: {
-    heading: {
+    title: {
+      display: 'block',
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      maxWidth: 768
     },
     body: {
       overflow: 'hidden'
@@ -80,10 +82,8 @@ export default class SingleProduct extends Component {
 
     return (
       <div className='panel panel-default'>
-        <div className='panel-heading text-center' style={ styles.panel.heading }>
-          <h3 className='panel-title'>{ product.name }</h3>
-        </div>
         <div className='panel-body text-center' style={ styles.panel.body }>
+          <h3 className='h3' style={ styles.panel.title }>{ product.name }</h3>
           {
             product.sold ?
               <div style={ styles.sold.container }>
@@ -96,7 +96,7 @@ export default class SingleProduct extends Component {
           }
           <img 
             src={ product.picture || genericImg } 
-            className='img-responsive' 
+            className='img-responsive center-block' 
             alt={ product.name }
             style={ styles.img }
           />

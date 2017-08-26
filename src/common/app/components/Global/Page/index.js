@@ -6,8 +6,8 @@ const styles = {
     padding: '16px 0 70px',
     marginBottom: -50,
     height: '100%',
-    display: 'flex',
-    flexDirection: 'column'
+    //display: 'flex',
+    //flexDirection: 'column'
   },
   container: {
     height: '100%'

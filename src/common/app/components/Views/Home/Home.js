@@ -33,7 +33,7 @@ export default class Home extends Component {
             <h1 className='lead' style={ styles.h1 }>
               Welcome to { APP_NAME }!
               <br />
-              <small>Where cows go moo.</small>
+              <small>Where cows go moo</small>
             </h1>
             <br />
             <Link to='/products' className='btn btn-primary btn-lg'>Start Shopping</Link>
