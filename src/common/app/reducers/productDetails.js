@@ -31,7 +31,7 @@ const actionsMap = {
 
   [PRODUCT_DETAILS_GET_START]: (state) => {
     return state.merge({
-      product: Map({
+      product: state.get('product').merge({
         loading: true,
         data: null
       })
@@ -40,7 +40,7 @@ const actionsMap = {
 
   [PRODUCT_DETAILS_GET_ERROR]: (state, action) => {
     return state.merge({
-      product: Map({
+      product: state.get('product').merge({
         loading: false,
         error: Map(action.data),
         data: null
@@ -50,7 +50,7 @@ const actionsMap = {
 
   [PRODUCT_DETAILS_GET_SUCCESS]: (state, action) => {
     return state.merge({
-      product: Map({
+      product: state.get('product').merge({
         loading: false,
         error: null,
         data: Map(action.data)
@@ -60,7 +60,7 @@ const actionsMap = {
 
   [BID_HISTORY_GET_START]: (state) => {
     return state.merge({
-      bids: Map({
+      bids: state.get('bids').merge({
         loading: true,
         data: List()
       })
@@ -69,7 +69,7 @@ const actionsMap = {
 
   [BID_HISTORY_GET_ERROR]: (state, action) => {
     return state.merge({
-      bids: Map({
+      bids: state.get('bids').merge({
         loading: false,
         error: Map(action.data)
       })
@@ -78,7 +78,7 @@ const actionsMap = {
 
   [BID_HISTORY_GET_SUCCESS]: (state, action) => {
     return state.merge({
-      bids: Map({
+      bids: state.get('bids').merge({
         loading: false,
         error: null,
         data: List(action.data)
@@ -88,7 +88,7 @@ const actionsMap = {
 
   [BID_CREATE_ERROR]: (state, action) => {
     return state.merge({
-      createBid: Map({
+      createBid: state.get('bids').merge({
         error: Map(action.data)
       })
     });
@@ -96,7 +96,7 @@ const actionsMap = {
 
   [BID_CREATE_SUCCESS]: (state) => {
     return state.merge({
-      createBid: Map({
+      createBid: state.get('bids').merge({
         error: null
       })
     });
