@@ -77,10 +77,6 @@ export default class BidForm extends Component {
 
   }
 
-  validateForm() {
-
-  }
-
   handleSubmit(e) {
 
     e.preventDefault();
@@ -90,6 +86,7 @@ export default class BidForm extends Component {
     const bid = {
       user: username.state.value,
       amount: amount.state.value,
+      date: (new Date()).toISOString()
     }
 
     onSubmit(bid, product.toJS());
@@ -108,8 +105,8 @@ export default class BidForm extends Component {
 
     return (
       <Validation.components.Form 
-				ref={(c) => { this.form = c }} 
-				onSubmit={(e) => this.handleSubmit(e)}>
+				ref={ (c) => { this.form = c } }
+				onSubmit={ (e) => this.handleSubmit(e) }>
 
         {
           error ?

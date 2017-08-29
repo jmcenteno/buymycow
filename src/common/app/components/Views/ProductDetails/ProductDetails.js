@@ -125,7 +125,7 @@ export default class Products extends Component {
                             null
                         }
                         <img 
-                          src={ product.get('picture') || genericImg } 
+                          src={ product.getIn(['data', 'picture']) || genericImg } 
                           className='img-responsive'
                           alt={ product.getIn(['data', 'name']) }
                           style={ styles.productImage }
