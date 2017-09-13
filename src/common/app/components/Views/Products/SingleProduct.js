@@ -31,7 +31,7 @@ const styles = {
       justifyContent: 'center',
       transform: 'rotate(-45deg)',
       position: 'absolute',
-      top: -60,
+      top: -120,
       left: -70,
       width: 120,
       height: 100,
