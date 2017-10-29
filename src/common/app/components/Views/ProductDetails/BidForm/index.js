@@ -33,7 +33,7 @@ Object.assign(Validation.rules, {
   },
   numeric: {
     rule: (value) => {
-      return Validator.isNumeric(value.toString());
+      return Validator.isNumeric(value.toString()) || Validator.isFloat(value.toString());
     },
     hint: (value) => {
       return (
@@ -133,30 +133,26 @@ export default class BidForm extends Component {
         
         <div className='form-group'>
           <label className='control-label'>Bid Amount</label>
-          <div className='row'>
-            <div className='col-sm-7'>
-              <Validation.components.Input 
-                type='number'
-                name='amount'
-                id='amountControl'
-                value={ Number.parseInt(currentPrice, 10) + 1 }
-                step={ 1 }
-                min={ Number.parseInt(currentPrice, 10) + 1 }
-                className='form-control'
-                placeholder='Enter Amount'
-                aria-describedby='amountControl'
-                errorContainerClassName='has-error'
-                validations={ ['numeric', 'required', 'min'] }
-              />
-            </div>
-          </div>
+          <Validation.components.Input 
+            type='number'
+            name='amount'
+            id='amountControl'
+            value={ Number.parseInt(currentPrice, 10) + 1 }
+            step={ 1 }
+            min={ Number.parseInt(currentPrice, 10) + 1 }
+            className='form-control'
+            placeholder='Enter Amount'
+            aria-describedby='amountControl'
+            errorContainerClassName='has-error'
+            validations={ ['numeric', 'required', 'min'] }
+          />
         </div>
         
         <br />
 
         <Validation.components.Button 
           type='submit' 
-          className='btn btn-primary'>
+          className='btn btn-primary btn-block'>
           Place Your Bid!
         </Validation.components.Button>
 

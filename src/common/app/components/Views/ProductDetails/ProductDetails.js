@@ -8,6 +8,7 @@ import CurrentPrice from './CurrentPrice';
 import RemainingTime from './RemainingTime';
 import HighestBidder from './HighestBidder';
 import BidForm from './BidForm';
+import BidFormModal from './BidFormModal';
 
 const styles = {
   spinner: {
@@ -62,6 +63,18 @@ export default class Products extends Component {
     createBidError: PropTypes.object
   }
 
+  constructor() {
+
+    super();
+
+    this.state = {
+      showBidForm: false
+    };
+
+    this.setState = this.setState.bind(this);
+
+  }
+
   componentDidMount() {
 
     const { key } = this.props.match.params;
@@ -114,7 +127,7 @@ export default class Products extends Component {
                 <div className='col-md-8'>
 
                   <div className='row'>
-                    <div className='col-sm-6'>
+                    <div className='col-sm-7'>
 
                       <div className='h1 visible-xs' style={ styles.currentPrice }>
                         <CurrentPrice
@@ -142,7 +155,7 @@ export default class Products extends Component {
                       </aside>
 
                     </div>
-                    <div className='col-sm-6'>
+                    <div className='col-sm-5'>
 
                       <section>
                         <div className='h1 hidden-xs' style={ styles.currentPrice }>
@@ -158,16 +171,12 @@ export default class Products extends Component {
                       
                       {
                         !product.getIn(['data', 'sold']) ?
-                          <section>
-                            <BidForm 
-                              product={ product.get('data') }
-                              bids={ bidHistory.get('data') }
-                              user={ currentUser }
-                              error={ createBidError }
-                              onSetUser={ this.props.setUser }
-                              onSubmit={ this.props.createBid }
-                            />
-                          </section> :
+                          <button 
+                            type="button" 
+                            className="btn btn-primary" 
+                            onClick={ () => this.setState({ showBidForm: true }) }>
+                            Place Your Bid
+                          </button> :
                           null
                       }
 
@@ -195,6 +204,16 @@ export default class Products extends Component {
 
                 </div>
               </div>
+              <BidFormModal show={ this.state.showBidForm }>
+                <BidForm 
+                  product={ product.get('data') }
+                  bids={ bidHistory.get('data') }
+                  user={ currentUser }
+                  error={ createBidError }
+                  onSetUser={ this.props.setUser }
+                  onSubmit={ this.props.createBid }
+                />
+              </BidFormModal>
             </article> :
             null
         }
