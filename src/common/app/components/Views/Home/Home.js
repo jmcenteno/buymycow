@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import {  } from 'react-redux';
 
 import { APP_NAME } from '../../../config/app';
+import { setPageTitle } from '../../../actions/page';
 import { Page } from '../../Global';
 import cow from './cow.png';
 
@@ -24,7 +26,14 @@ const styles = {
 
 export default class Home extends Component {
 
+  componentDidMount() {
+
+    this.props.dispatch(setPageTitle('Home'));
+
+  }
+
   render() {
+
     return (
       <Page>
         <div className='content' style={ styles.content }>
@@ -41,6 +50,7 @@ export default class Home extends Component {
         </div>
       </Page>
     );
+
   }
 
 }

@@ -15,7 +15,10 @@ const styles = {
 export default class Products extends Component {
 
   componentDidMount() {
+
+    this.props.setPageTitle('Products');
     this.props.getProducts();
+
   }
 
   render() {

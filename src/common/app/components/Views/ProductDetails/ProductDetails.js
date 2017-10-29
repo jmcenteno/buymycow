@@ -66,6 +66,7 @@ export default class Products extends Component {
 
     const { key } = this.props.match.params;
     
+    this.props.setPageTitle('Products');
     this.props.getProductDetails(key);
     this.props.getBidHistory(key);
 
@@ -75,6 +76,14 @@ export default class Products extends Component {
 
     if (newProps.product.get('error')) {
       this.props.history.replace('/404');
+    }
+
+    if (newProps.product.get('data')) {
+
+      const name = newProps.product.getIn(['data', 'name']);
+
+      this.props.setPageTitle(`Products - ${name}`);
+
     }
 
   }

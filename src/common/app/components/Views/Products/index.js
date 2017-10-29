@@ -1,7 +1,8 @@
 import { connect }            from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as actions from '../../../actions/products';
+import { getProducts } from '../../../actions/products';
+import { setPageTitle } from '../../../actions/page';
 import Products from './Products';
 
 const mapStateToProps = (state) => {
@@ -13,10 +14,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(
-    actions,
-    dispatch
-  );
+  return bindActionCreators({ 
+    getProducts,
+    setPageTitle
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
