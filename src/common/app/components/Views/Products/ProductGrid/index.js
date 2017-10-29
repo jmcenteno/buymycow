@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { paginate } from '../../../services/utils';
+import { paginate } from '../../../../services/utils';
 import SingleProduct from './SingleProduct';
 
 const ProductGrid = ({ products, ...rest }) => {

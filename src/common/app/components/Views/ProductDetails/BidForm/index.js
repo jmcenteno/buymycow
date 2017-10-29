@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Validation from 'react-validation';
 import Validator from 'validator';
 
-import { FormError } from '../../Global';
+import { FormError } from '../../../Global';
 
 Object.assign(Validation.rules, {
   // Key name maps the rule 
